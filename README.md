@@ -36,10 +36,12 @@ brew install wkhtmltopdf
 
 Edit your Package.swift
 
+```swift
 //add this repo to dependencies
 .package(url: "https://github.com/MihaelIsaev/wkhtmltopdf.git", from: "1.0.0")
 //and don't forget about targets
 //"WKHTMLTOPDF"
+```
 
 # Example 🔥
 
