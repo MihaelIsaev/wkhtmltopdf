@@ -48,6 +48,8 @@ Edit your Package.swift
 The very common usage is to generate some report on request on-the-fly and return pdf file in response
 
 ```swift
+import WKHTMLTOPDF
+
 router.get("pdf") { req throws -> EventLoopFuture<Response> in
     let wk = WK(.topMargin(20),
                 .leftMargin(20),
