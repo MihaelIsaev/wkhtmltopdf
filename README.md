@@ -17,6 +17,30 @@
 Swift lib for building pdf file data from leaf templates and/or web pages through wkhtmltopdf cli
 Built for Vapor 3 and uses Vapor itself (with Swift-NIO under the hood) and Leaf for templates.
 
+# Installation
+
+First of all install `wkhtmltopdf` itself
+
+## Ubuntu
+```bash
+sudo apt-get update
+sudo apt-get install xvfb libfontconfig wkhtmltopdf
+```
+
+## macOS
+```bash
+brew install wkhtmltopdf
+```
+
+## Swift Package Manager
+
+Edit your Package.swift
+
+//add this repo to dependencies
+.package(url: "https://github.com/MihaelIsaev/wkhtmltopdf.git", from: "1.0.0")
+//and don't forget about targets
+//"WKHTMLTOPDF"
+
 # Example 🔥
 
 The very common usage is to generate some report on request on-the-fly and return pdf file in response
