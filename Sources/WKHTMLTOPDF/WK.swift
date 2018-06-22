@@ -3,7 +3,7 @@ import Core
 import Vapor
 import Leaf
 
-typealias WK = WKHTMLTOPDF
+public typealias WK = WKHTMLTOPDF
 
 public class WKHTMLTOPDF {
     private var params: [GeneralParam] = []

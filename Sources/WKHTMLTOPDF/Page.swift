@@ -17,12 +17,12 @@ public protocol PageProtocol {
     func generate(_ container: Container, fm: FileManager, tmpDir: String) throws -> EventLoopFuture<GeneratedPage>
 }
 
-class Page<T>: PageProtocol where T: Codable {
-    var path: String
-    var payload: T?
-    var params: [PageParam] = []
+public class Page<T>: PageProtocol where T: Codable {
+    public var path: String
+    public var payload: T?
+    public var params: [PageParam] = []
     
-    init(view path: String,
+    public init(view path: String,
             payload: T,
             params: PageParam...) {
         self.path = path
@@ -30,7 +30,7 @@ class Page<T>: PageProtocol where T: Codable {
         self.params = params
     }
     
-    init(url path: String, params: PageParam...) {
+    public init(url path: String, params: PageParam...) {
         self.path = path
         self.params = params
     }
