@@ -121,6 +121,7 @@ public enum PageParam: CustomStringConvertible, Equatable {
     case windowStatus(String)
     /// --zoom <float> Use this zoom factor (default 1)
     case zoom(Float)
+    case defaultZoom
     
     public var key: String {
         switch self {
@@ -184,6 +185,7 @@ public enum PageParam: CustomStringConvertible, Equatable {
         case .viewportSize: return "--viewport-size"
         case .windowStatus: return "--window-status"
         case .zoom: return "--zoom"
+        case .defaultZoom: return "--zoom"
         }
     }
     
@@ -222,6 +224,12 @@ public enum PageParam: CustomStringConvertible, Equatable {
         case let .viewportSize(v): result.append(v)
         case let .windowStatus(v): result.append(v)
         case let .zoom(v): result.append(String(describing: v))
+        case .defaultZoom:
+            #if os(Linux)
+            result.append(String(describing: 1.3))
+            #else
+            result.append(String(describing: 6))
+            #endif
         default: break
         }
         return result

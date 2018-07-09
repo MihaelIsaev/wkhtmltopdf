@@ -39,6 +39,8 @@ public enum GeneralParam: CustomStringConvertible, Equatable {
     case footerFontSize(Int)
     /// --footer-html <url> Adds a html footer
     case footerHtml(url: String)
+    /// Adds leaf footer
+    case footerLeaf(page: PageBarProtocol)
     /// --footer-left <text> Left aligned footer text
     case footerLeft(String)
     /// --footer-line Display line above the footer
@@ -57,6 +59,8 @@ public enum GeneralParam: CustomStringConvertible, Equatable {
     case headerFontSize(Int)
     /// --header-html <url> Adds a html header
     case headerHtml(url: String)
+    /// Adds leaf header
+    case headerLeaf(page: PageBarProtocol)
     /// --header-left <text> Left aligned header text
     case headerLeft(String)
     /// --header-line Display line below the header
@@ -82,6 +86,42 @@ public enum GeneralParam: CustomStringConvertible, Equatable {
     /// --xsl-style-sheet <file> Use the supplied xsl style sheet for printing the table of content
     case xslStyleSheet(path: String)
     
+    public var isHeaderHtml: Bool {
+        switch self {
+        case .headerHtml: return true
+        default: return false
+        }
+    }
+    
+    public var isHeaderLeaf: Bool {
+        switch self {
+        case .headerLeaf: return true
+        default: return false
+        }
+    }
+    
+    public var isFooterHtml: Bool {
+        switch self {
+        case .footerHtml: return true
+        default: return false
+        }
+    }
+    
+    public var isFooterLeaf: Bool {
+        switch self {
+        case .footerLeaf: return true
+        default: return false
+        }
+    }
+    
+    public var pageBar: PageBarProtocol? {
+        switch self {
+        case let .headerLeaf(v): return v
+        case let .footerLeaf(v): return v
+        default: return nil
+        }
+    }
+    
     public var key: String {
         switch self {
         case .quiet: return "--quiet"
@@ -98,6 +138,7 @@ public enum GeneralParam: CustomStringConvertible, Equatable {
         case .footerCenter: return "--footer-center"
         case .footerFontName: return "--footer-font-name"
         case .footerFontSize: return "--footer-font-size"
+        case .footerLeaf: fallthrough
         case .footerHtml: return "--footer-html"
         case .footerLeft: return "--footer-left"
         case .footerLine: return "--footer-line"
@@ -107,6 +148,7 @@ public enum GeneralParam: CustomStringConvertible, Equatable {
         case .headerCenter: return "--header-center"
         case .headerFontName: return "--header-font-name"
         case .headerFontSize: return "--header-font-size"
+        case .headerLeaf: fallthrough
         case .headerHtml: return "--header-html"
         case .headerLeft: return "--header-left"
         case .headerLine: return "--header-line"
@@ -122,7 +164,7 @@ public enum GeneralParam: CustomStringConvertible, Equatable {
         case .xslStyleSheet: return "--xsl-style-sheet"
         }
     }
-        
+    
     public var description: String {
         return key
     }
