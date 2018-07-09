@@ -10,13 +10,13 @@ public enum Handler: String {
 
 public enum GeneralParam: CustomStringConvertible, Equatable {
     /// -q, --quiet Be less verbose, maintained for backwards compatibility; Same as using --log-level none
-    case quiet()
+    case quiet
     /// -s, --page-size <Size> Set paper size to: A4, Letter, etc. (default A4)
     case paperSize(PaperSize)
     /// -g, --grayscale PDF will be generated in grayscale
-    case grayscale()
+    case grayscale
     /// -l, --lowquality Generates lower quality pdf/ps. Useful to shrink the result document space
-    case lowQuality()
+    case lowQuality
     /// -O, --orientation <orientation> Set orientation to Landscape or Portrait (default Portrait)
     case orientation(Orientation)
     /// -T, --margin-top <unitreal> Set the page top margin
@@ -42,9 +42,9 @@ public enum GeneralParam: CustomStringConvertible, Equatable {
     /// --footer-left <text> Left aligned footer text
     case footerLeft(String)
     /// --footer-line Display line above the footer
-    case footerLine()
+    case footerLine
     /// --no-footer-line Do not display line above the footer (default)
-    case noFooterLine()
+    case noFooterLine
     /// --footer-right <text> Right aligned footer text
     case footerRight(String)
     /// --footer-spacing <real> Spacing between footer and content in mm (default 0)
@@ -60,9 +60,9 @@ public enum GeneralParam: CustomStringConvertible, Equatable {
     /// --header-left <text> Left aligned header text
     case headerLeft(String)
     /// --header-line Display line below the header
-    case headerLine()
+    case headerLine
     /// --no-header-line Do not display line below the header (default)
-    case noHeaderLine()
+    case noHeaderLine
     /// --header-right <text> Right aligned header text
     case headerRight(String)
     /// --header-spacing <real> Spacing between header and content in mm (default 0)
@@ -70,13 +70,13 @@ public enum GeneralParam: CustomStringConvertible, Equatable {
     /// --replace <name> <value> Replace [name] with value in header and footer (repeatable)
     case replace(name: String, value: String)
     /// --disable-dotted-lines Do not use dotted lines in the toc
-    case disableDottedLines()
+    case disableDottedLines
     /// --toc-header-text <text> The header text of the toc (default Table of Contents)
     case tocHeaderText(String)
     /// --toc-level-indentation <width> For each level of headings in the toc indent by this length (default 1em)
     case tocLevelIndentation(String)
     /// --disable-toc-links Do not link from toc to sections
-    case disableTocLinks()
+    case disableTocLinks
     /// --toc-text-size-shrink <real> For each level of headings in the toc the font is scaled by this factor (default 0.8)
     case tocTextSizeShrink(Float)
     /// --xsl-style-sheet <file> Use the supplied xsl style sheet for printing the table of content
