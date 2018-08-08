@@ -7,7 +7,11 @@ public typealias WK = WKHTMLTOPDF
 
 public class WKHTMLTOPDF {
     private var params: [GeneralParam] = []
+    #if os(Linux)
+    private var pathToBinary = "/usr/bin/wkhtmltopdf"
+    #else
     private var pathToBinary = "/usr/local/bin/wkhtmltopdf"
+    #endif
     private var tmpDir = "/tmp/wkhtmltopdf"
     
     public init (pathToBinary: String? = nil, tmpDir: String? = nil, _ params: GeneralParam...) {
@@ -40,6 +44,9 @@ public class WKHTMLTOPDF {
             }
             let wk = Process()
             let stdout = Pipe()
+            defer {
+                stdout.fileHandleForReading.closeFile()
+            }
             wk.launchPath = self.pathToBinary
             if !self.params.contains(.quiet()) {
                 self.params.append(.quiet())

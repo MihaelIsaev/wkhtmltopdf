@@ -29,7 +29,7 @@ sudo apt-get install xvfb libfontconfig wkhtmltopdf
 
 ## macOS
 ```bash
-brew install wkhtmltopdf
+brew cask install wkhtmltopdf
 ```
 
 ## Swift Package Manager
