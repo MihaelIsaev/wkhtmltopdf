@@ -77,7 +77,7 @@ Looks good, right? 😃
 
 # ToDo 👨🏻‍💻
 
-- [ ] generate headers/footers from Leaf templates too (available in `dev` branch 🔥)
+- [x] generate headers/footers from Leaf templates too (available since 1.1 🔥)
 
 # Cheatsheet 📌
 
