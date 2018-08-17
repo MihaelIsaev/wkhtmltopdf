@@ -10,13 +10,13 @@ public enum Handler: String {
 
 public enum GeneralParam: CustomStringConvertible, Equatable {
     /// -q, --quiet Be less verbose, maintained for backwards compatibility; Same as using --log-level none
-    case quiet()
+    case quiet
     /// -s, --page-size <Size> Set paper size to: A4, Letter, etc. (default A4)
     case paperSize(PaperSize)
     /// -g, --grayscale PDF will be generated in grayscale
-    case grayscale()
+    case grayscale
     /// -l, --lowquality Generates lower quality pdf/ps. Useful to shrink the result document space
-    case lowQuality()
+    case lowQuality
     /// -O, --orientation <orientation> Set orientation to Landscape or Portrait (default Portrait)
     case orientation(Orientation)
     /// -T, --margin-top <unitreal> Set the page top margin
@@ -39,12 +39,14 @@ public enum GeneralParam: CustomStringConvertible, Equatable {
     case footerFontSize(Int)
     /// --footer-html <url> Adds a html footer
     case footerHtml(url: String)
+    /// Adds leaf footer
+    case footerLeaf(page: PageBarProtocol)
     /// --footer-left <text> Left aligned footer text
     case footerLeft(String)
     /// --footer-line Display line above the footer
-    case footerLine()
+    case footerLine
     /// --no-footer-line Do not display line above the footer (default)
-    case noFooterLine()
+    case noFooterLine
     /// --footer-right <text> Right aligned footer text
     case footerRight(String)
     /// --footer-spacing <real> Spacing between footer and content in mm (default 0)
@@ -57,12 +59,14 @@ public enum GeneralParam: CustomStringConvertible, Equatable {
     case headerFontSize(Int)
     /// --header-html <url> Adds a html header
     case headerHtml(url: String)
+    /// Adds leaf header
+    case headerLeaf(page: PageBarProtocol)
     /// --header-left <text> Left aligned header text
     case headerLeft(String)
     /// --header-line Display line below the header
-    case headerLine()
+    case headerLine
     /// --no-header-line Do not display line below the header (default)
-    case noHeaderLine()
+    case noHeaderLine
     /// --header-right <text> Right aligned header text
     case headerRight(String)
     /// --header-spacing <real> Spacing between header and content in mm (default 0)
@@ -70,17 +74,53 @@ public enum GeneralParam: CustomStringConvertible, Equatable {
     /// --replace <name> <value> Replace [name] with value in header and footer (repeatable)
     case replace(name: String, value: String)
     /// --disable-dotted-lines Do not use dotted lines in the toc
-    case disableDottedLines()
+    case disableDottedLines
     /// --toc-header-text <text> The header text of the toc (default Table of Contents)
     case tocHeaderText(String)
     /// --toc-level-indentation <width> For each level of headings in the toc indent by this length (default 1em)
     case tocLevelIndentation(String)
     /// --disable-toc-links Do not link from toc to sections
-    case disableTocLinks()
+    case disableTocLinks
     /// --toc-text-size-shrink <real> For each level of headings in the toc the font is scaled by this factor (default 0.8)
     case tocTextSizeShrink(Float)
     /// --xsl-style-sheet <file> Use the supplied xsl style sheet for printing the table of content
     case xslStyleSheet(path: String)
+    
+    public var isHeaderHtml: Bool {
+        switch self {
+        case .headerHtml: return true
+        default: return false
+        }
+    }
+    
+    public var isHeaderLeaf: Bool {
+        switch self {
+        case .headerLeaf: return true
+        default: return false
+        }
+    }
+    
+    public var isFooterHtml: Bool {
+        switch self {
+        case .footerHtml: return true
+        default: return false
+        }
+    }
+    
+    public var isFooterLeaf: Bool {
+        switch self {
+        case .footerLeaf: return true
+        default: return false
+        }
+    }
+    
+    public var pageBar: PageBarProtocol? {
+        switch self {
+        case let .headerLeaf(v): return v
+        case let .footerLeaf(v): return v
+        default: return nil
+        }
+    }
     
     public var key: String {
         switch self {
@@ -98,6 +138,7 @@ public enum GeneralParam: CustomStringConvertible, Equatable {
         case .footerCenter: return "--footer-center"
         case .footerFontName: return "--footer-font-name"
         case .footerFontSize: return "--footer-font-size"
+        case .footerLeaf: fallthrough
         case .footerHtml: return "--footer-html"
         case .footerLeft: return "--footer-left"
         case .footerLine: return "--footer-line"
@@ -107,6 +148,7 @@ public enum GeneralParam: CustomStringConvertible, Equatable {
         case .headerCenter: return "--header-center"
         case .headerFontName: return "--header-font-name"
         case .headerFontSize: return "--header-font-size"
+        case .headerLeaf: fallthrough
         case .headerHtml: return "--header-html"
         case .headerLeft: return "--header-left"
         case .headerLine: return "--header-line"
@@ -122,7 +164,7 @@ public enum GeneralParam: CustomStringConvertible, Equatable {
         case .xslStyleSheet: return "--xsl-style-sheet"
         }
     }
-        
+    
     public var description: String {
         return key
     }

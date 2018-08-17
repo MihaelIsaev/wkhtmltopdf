@@ -4,9 +4,9 @@ public enum PageParam: CustomStringConvertible, Equatable {
     /// --allow <path> Allow the file or files from the specified folder to be loaded (repeatable)
     case allow(path: String)
     /// --background Do print background (default)
-    case background()
+    case background
     /// --no-background Do not print background
-    case noBackground()
+    case noBackground
     /// --bypass-proxy-for <value> Bypass proxy for host (repeatable)
     case bypassProxyFor(String)
     /// --cache-dir <path> Web cache directory
@@ -20,59 +20,59 @@ public enum PageParam: CustomStringConvertible, Equatable {
     /// --custom-header <name> <value> Set an additional HTTP header (repeatable)
     case customHeader(name: String, value: String)
     /// --custom-header-propagation Add HTTP headers specified by
-    case customHeaderPropagation()
+    case customHeaderPropagation
     /// --no-custom-header-propagation  Do not add HTTP headers specified by
-    case noCustomHeaderPropagation()
+    case noCustomHeaderPropagation
     /// --default-header Add a default header, with the name of the page to the left, and the page number to the right
     case defaultHeader()
     /// --encoding <encoding> Set the default text encoding, for input
     case encoding(String)
     /// --disable-external-links Do not make links to remote web pages
-    case disableExternalLinks()
+    case disableExternalLinks
     /// --enable-external-links Make links to remote web pages (default)
-    case enableExternalLinks()
+    case enableExternalLinks
     /// --enable-forms Turn HTML form fields into pdf form fields
-    case enableForms()
+    case enableForms
     /// --disable-forms Do not turn HTML form fields into pdf form fields (default)
-    case disableForms()
+    case disableForms
     /// --images Do load or print images (default)
-    case images()
+    case images
     /// --no-images Do not load or print images
-    case noImages()
+    case noImages
     /// --disable-internal-links Do not make local links
-    case disableInternalLinks()
+    case disableInternalLinks
     /// --enable-internal-links Make local links (default)
-    case enableInternalLinks()
+    case enableInternalLinks
     /// -n, --disable-javascript Do not allow web pages to run javascript
-    case disableJavaScript()
+    case disableJavaScript
     /// --enable-javascript Do allow web pages to run javascript (default)
-    case enableJavaScript()
+    case enableJavaScript
     /// --javascript-delay <msec> Wait some milliseconds for javascript finish (default 200)
     case javascriptDelay(msec: Int)
     /// --keep-relative-links Keep relative external links as relative external links
-    case keepRelativeLinks()
+    case keepRelativeLinks
     /// --load-error-handling <handler> Specify how to handle pages that fail to load: abort, ignore or skip (default abort)
     case loadErrorHandling(Handler)
     /// --load-media-error-handling <handler> Specify how to handle media files that fail to load: abort, ignore or skip (default ignore)
     case loadMediaErrorHandling(Handler)
     /// --disable-local-file-access Do not allowed conversion of a local file to read in other local files, unless explicitly allowed with --allow
-    case enableLocalFileAccess()
+    case enableLocalFileAccess
     /// --enable-local-file-access Allowed conversion of a local file to read in other local files. (default)
-    case disableLocalFileAccess()
+    case disableLocalFileAccess
     /// --minimum-font-size <int> Minimum font size
     case minimumFontSize(Int)
     /// --exclude-from-outline Do not include the page in the table of contents and outlines
-    case excludeFromOutline()
+    case excludeFromOutline
     /// --include-in-outline Include the page in the table of contents and outlines (default)
-    case includeInOutline()
+    case includeInOutline
     /// --page-offset <offset> Set the starting page number (default 0)
     case pageOffset(Int)
     /// --password <password> HTTP Authentication password
     case password(String)
     /// --disable-plugins Disable installed plugins (default)
-    case disablePlugins()
+    case disablePlugins
     /// --enable-plugins Enable installed plugins (plugins will likely not work)
-    case enablePlugins()
+    case enablePlugins
     /// --post <name> <value> Add an additional post field (repeatable)
     case postField(name: String, value: String)
     /// --post-file <name> <path> Post an additional file (repeatable)
@@ -80,23 +80,23 @@ public enum PageParam: CustomStringConvertible, Equatable {
     /// --print-media-type Use print media-type instead of screen
     case printMediaType()
     /// --no-print-media-type Do not use print media-type instead of screen (default)
-    case noPrintMediaType()
+    case noPrintMediaType
     /// -p, --proxy <proxy> Use a proxy
     case proxy(String)
     /// --proxy-hostname-lookup Use the proxy for resolving hostnames
-    case proxyHostnameLookup()
+    case proxyHostnameLookup
     /// --radiobutton-checked-svg <path> Use this SVG file when rendering checked radiobuttons
     case radioButtonChecked(path: String)
     /// --radiobutton-svg <path> Use this SVG file when rendering unchecked radiobuttons
     case radioButtonUnchecked(path: String)
     /// --resolve-relative-links Resolve relative external links into absolute links (default)
-    case resolveRelativeLinks()
+    case resolveRelativeLinks
     /// --run-script <js> Run this additional javascript after the page is done loading (repeatable)
     case runScript(js: String)
     /// --disable-smart-shrinking Disable the intelligent shrinking strategy used by WebKit that makes the pixel/dpi ratio none constant
-    case disableSmartShrinking()
+    case disableSmartShrinking
     /// --enable-smart-shrinking Enable the intelligent shrinking strategy used by WebKit that makes the pixel/dpi ratio none constant (default)
-    case enableSmartShrinking()
+    case enableSmartShrinking
     /// --ssl-crt-path <path> Path to the ssl client cert public key in OpenSSL PEM format, optionally followed by intermediate ca and trusted certs
     case sslCrtPath(path: String)
     /// --ssl-key-password <password> Password to ssl client cert private key
@@ -104,13 +104,13 @@ public enum PageParam: CustomStringConvertible, Equatable {
     /// --ssl-key-path <path> Path to ssl client cert private key in OpenSSL PEM format
     case sslKeyPath(path: String)
     /// --stop-slow-scripts Stop slow running javascripts (default)
-    case stopSlowScripts()
+    case stopSlowScripts
     /// --no-stop-slow-scripts Do not Stop slow running javascripts
-    case noStopSlowScripts()
+    case noStopSlowScripts
     /// --disable-toc-back-links Do not link from section header to toc (default)
-    case disableTocBackLinks()
+    case disableTocBackLinks
     /// --enable-toc-back-links Link from section header to toc
-    case enableTocBackLinks()
+    case enableTocBackLinks
     /// --user-style-sheet <url> Specify a user style sheet, to load with every page
     case userStyleSheet(url: String)
     /// --username <username> HTTP Authentication username
@@ -121,6 +121,7 @@ public enum PageParam: CustomStringConvertible, Equatable {
     case windowStatus(String)
     /// --zoom <float> Use this zoom factor (default 1)
     case zoom(Float)
+    case defaultZoom
     
     public var key: String {
         switch self {
@@ -184,6 +185,7 @@ public enum PageParam: CustomStringConvertible, Equatable {
         case .viewportSize: return "--viewport-size"
         case .windowStatus: return "--window-status"
         case .zoom: return "--zoom"
+        case .defaultZoom: return "--zoom"
         }
     }
     
@@ -222,6 +224,12 @@ public enum PageParam: CustomStringConvertible, Equatable {
         case let .viewportSize(v): result.append(v)
         case let .windowStatus(v): result.append(v)
         case let .zoom(v): result.append(String(describing: v))
+        case .defaultZoom:
+            #if os(Linux)
+            result.append(String(describing: 1.3))
+            #else
+            result.append(String(describing: 6))
+            #endif
         default: break
         }
         return result
