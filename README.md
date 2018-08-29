@@ -56,6 +56,10 @@ router.get("pdf") { req throws -> EventLoopFuture<Response> in
                 .rightMargin(20),
                 .bottomMargin(20),
                 .paperSize(.A4))
+    //Also you can provide path to your `wkhtmltopdf` binary
+    //while initialization because binary place may be different
+    //WK(pathToBinary: "/usr/bin/wkhtmltopdf", .topMargin(20), ...)
+    
     struct ReportIntro: Codable {
         var reportName = "Monthly usage"
     }
