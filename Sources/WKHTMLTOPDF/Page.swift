@@ -53,7 +53,7 @@ public class Page<T>: PageProtocol where T: Codable {
         let leaf = try container.make(LeafRenderer.self)
         return leaf.render(path, payload).map { view in
             let tmpFile = "\(tmpDir)/\(UUID().uuidString).html"
-            fm.createFile(atPath: tmpFile, contents: view.data)
+            _ = fm.createFile(atPath: tmpFile, contents: view.data)
             return GeneratedPage(path: tmpFile, params: self.params)
         }
     }

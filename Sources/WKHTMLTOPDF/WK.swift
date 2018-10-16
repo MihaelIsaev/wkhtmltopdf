@@ -20,18 +20,19 @@ public class WKHTMLTOPDF {
         }
     }
     
-    public func generate<Page>(container: Container, pages: Page...) throws -> EventLoopFuture<Data> where Page: PageProtocol {
+    public func generate(container: Container, pages: PageProtocol...) throws -> EventLoopFuture<Data> {
         return try generate(container: container, pages: pages)
     }
     
-    public func generate<Page>(container: Container, pages: [Page]) throws -> EventLoopFuture<Data> where Page: PageProtocol {
+    public func generate(container: Container, pages: [PageProtocol]) throws -> EventLoopFuture<Data> {
         let fm = FileManager()
         try fm.createDirectory(atPath: tmpDir, withIntermediateDirectories: true)
         
-        var generatedPages: [GeneratedPage] = []
-        return try pages.forEach(on: container, fm: fm, tmpDir: self.tmpDir) { page in
-            generatedPages.append(page)
-            }.flatMap {
+        return try pages.map { page in
+            try page.generate(container, fm: fm, tmpDir: self.tmpDir)
+            }
+            .flatten(on: container)
+            .flatMap { generatedPages in
                 defer {
                     for page in generatedPages {
                         try? fm.removeItem(atPath: page.path)
