@@ -19,18 +19,45 @@ Built for Vapor 3 and uses Vapor itself (with Swift-NIO under the hood) and Leaf
 
 # Installation ⚙️
 
-First of all install `wkhtmltopdf` itself
+First of all install `wkhtmltopdf` itself.
 
 ## Ubuntu
+
+Either install it automatically
+
 ```bash
 sudo apt-get update
-sudo apt-get install xvfb libfontconfig wkhtmltopdf
+sudo apt-get install wkhtmltopdf
+```
+or manually e.g. using `deb` file [from latest releases](https://github.com/wkhtmltopdf/wkhtmltopdf/releases)
+```bash
+wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.xenial_amd64.deb
+sudo dpkg -i wkhtmltox_0.12.5-1.xenial_amd64.deb
+sudo apt-get -f install
+```
+or manually e.g. using `tar.xz` [from latest releases](https://github.com/wkhtmltopdf/wkhtmltopdf/releases)
+```bash
+wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz
+tar -xvf wkhtmltox-0.12.4_linux-generic-amd64.tar.xz
+cd wkhtmltox/bin/
+sudo mv wkhtmltopdf /usr/bin/wkhtmltopdf
+sudo mv wkhtmltoimage /usr/bin/wkhtmltoimage
+sudo chmod a+x /usr/bin/wkhtmltopdf
+sudo chmod a+x /usr/bin/wkhtmltoimage
+```
+also you may need to install some additional packages
+```bash
+sudo apt-get install xvfb libfontconfig libxrender1
 ```
 
 ## macOS
 ```bash
 brew cask install wkhtmltopdf
 ```
+
+## Vapor Cloud
+I'm not sure that wktmltopdf binary is available in Vapor Cloud, unfortunately.
+If you have any info regarding that please feel free to send pull request with instructions to update this readme.
 
 ## Swift Package Manager
 
@@ -78,6 +105,21 @@ router.get("pdf") { req throws -> EventLoopFuture<Response> in
 ```
 
 Looks good, right? 😃
+
+# Note about UTF-8 encoding
+Please make sure that you correctly set html headers in your files and installed all necessary rendering packages in your OS.
+
+e.g. correct html header may look like this
+```html
+<html>
+    <head>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    </head>
+    <body>
+    </body>
+</html>
+```
+
 
 # ToDo 👨🏻‍💻
 
@@ -208,3 +250,6 @@ PageParam | Description
 .viewportSize(String) | --viewport-size <> Set viewport size if you have custom scrollbars or css attribute overflow to emulate window size
 .windowStatus(String) | --window-status <windowStatus> Wait until window.status is equal to this string before rendering page
 .zoom(Float) | --zoom <float> Use this zoom factor (default 1)
+    
+
+Please feel free to contribute!
