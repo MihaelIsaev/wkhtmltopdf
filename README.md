@@ -55,6 +55,16 @@ sudo apt-get install xvfb libfontconfig libxrender1
 brew cask install wkhtmltopdf
 ```
 
+## Heroku
+
+Add the WKHTMLTOPDF [buildpack](https://github.com/dscout/wkhtmltopdf-buildpack) to your Heroku app either from the Settings tab on the Heroku dashboard or through the Heroku CLI
+
+When initializing the WK object be sure to specify the "pathToBinary" param as `/app/bin/wkhtmltopdf`:
+```swift
+WK(pathToBinary: "/app/bin/wkhtmltopdf", .topMargin(20), ...)
+```
+
+
 ## Vapor Cloud
 I'm not sure that wktmltopdf binary is available in Vapor Cloud, unfortunately.
 If you have any info regarding that please feel free to send pull request with instructions to update this readme.
