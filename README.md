@@ -1,17 +1,17 @@
 [![Mihael Isaev](https://user-images.githubusercontent.com/1272610/41496020-48236678-7146-11e8-8c8e-bf36bc74a5ba.png)](http://mihaelisaev.com)
 
 <p align="center">
-<a href="LICENSE">
-<img src="https://img.shields.io/badge/license-MIT-brightgreen.svg" alt="MIT License">
-</a>
-<a href="https://swift.org">
-<img src="https://img.shields.io/badge/swift-4.1-brightgreen.svg" alt="Swift 4.1">
-</a>
-<a href="https://twitter.com/VaporRussia">
-<img src="https://img.shields.io/badge/twitter-VaporRussia-5AA9E7.svg" alt="Twitter">
-</a>
+    <a href="LICENSE">
+        <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg" alt="MIT License">
+    </a>
+    <a href="https://swift.org">
+        <img src="https://img.shields.io/badge/swift-4.1-brightgreen.svg" alt="Swift 4.1">
+    </a>
+    <a href="https://discord.gg/q5wCPYv">
+        <img src="https://img.shields.io/badge/CLICK_HERE_TO_DISCUSS_THIS_LIB-SWIFT.STREAM-FD6F32.svg" alt="Swift.Stream">
+    </a>
 </p>
-<p align="center"><a href="https://discord.gg/q5wCPYv">SWIFT.STREAM COMMUNITY IN DISCORD</a></p>
+
 <br>
 
 Swift lib for building pdf file data from leaf templates and/or web pages through wkhtmltopdf cli
